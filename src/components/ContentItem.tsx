@@ -11,6 +11,7 @@ export interface ContentItemData {
   category: string;
   duration: string;
   views: string;
+  link?: string;
 }
 
 interface ContentItemProps {
@@ -21,12 +22,19 @@ export function ContentItem({ item }: ContentItemProps) {
   const [isHovered, setIsHovered] = useState(false);
   const isFeatured = item.type === 'featured';
 
+  const handleClick = () => {
+    if (item.link) {
+      window.open(item.link, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <motion.div
       className="group relative h-full overflow-hidden rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-slate-600 transition-all duration-300 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ y: -4 }}
+      onClick={handleClick}
     >
       {/* Image Container */}
       <div className="relative overflow-hidden h-full">

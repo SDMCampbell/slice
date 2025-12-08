@@ -1,31 +1,24 @@
 import { motion } from 'motion/react';
-import { ArrowRight, type LucideIcon } from 'lucide-react';
-import { useState } from 'react';
-
-interface Section {
-  id: string;
-  title: string;
-  description: string;
-  icon: LucideIcon;
-  image: string;
-  color: string;
-  link: string;
-}
+import { ArrowRight } from 'lucide-react';
+import { useState, type MouseEvent } from 'react';
+import { HomepageSection } from '../data/homepageSections';
 
 interface ContentCardProps {
-  section: Section;
+  section: HomepageSection;
   index: number;
-  onNavigate: (page: 'gaming') => void;
+  onNavigate: (page: 'gaming' | 'streaming') => void;
 }
 
 export function ContentCard({ section, index, onNavigate }: ContentCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const Icon = section.icon;
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (section.id === 'gaming') {
       onNavigate('gaming');
+    } else if (section.id === 'streaming') {
+      onNavigate('streaming');
     }
   };
 

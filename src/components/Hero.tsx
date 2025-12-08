@@ -54,7 +54,7 @@ export function Hero() {
           </motion.div>
 
           <h1 className="text-6xl md:text-8xl mb-6 bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent">
-            Your Content Universe
+            Dooged.com
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto">
