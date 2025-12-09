@@ -1,32 +1,27 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-import { useState, type MouseEvent } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { HomepageSection } from '../data/homepageSections';
 
 interface ContentCardProps {
   section: HomepageSection;
   index: number;
-  onNavigate: (page: 'gaming' | 'streaming') => void;
 }
 
-export function ContentCard({ section, index, onNavigate }: ContentCardProps) {
+export function ContentCard({ section, index }: ContentCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const Icon = section.icon;
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (section.id === 'gaming') {
-      onNavigate('gaming');
-    } else if (section.id === 'streaming') {
-      onNavigate('streaming');
-    }
+  // Determine the route based on section ID
+  const getRoute = () => {
+    if (section.id === 'gaming') return '/gaming';
+    if (section.id === 'streaming') return '/streaming';
+    return section.link; // Fallback to original link for other sections
   };
 
   return (
-    <motion.a
-      href={section.link}
-      onClick={handleClick}
-      className="group relative block overflow-hidden rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-slate-600 transition-all duration-300 cursor-pointer"
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -35,6 +30,10 @@ export function ContentCard({ section, index, onNavigate }: ContentCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      <Link
+        to={getRoute()}
+        className="group relative block overflow-hidden rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 hover:border-slate-600 transition-all duration-300 cursor-pointer"
+      >
       {/* Image background */}
       <div className="relative h-64 overflow-hidden">
         <motion.img
@@ -84,6 +83,7 @@ export function ContentCard({ section, index, onNavigate }: ContentCardProps) {
       <motion.div
         className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${section.color} opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none`}
       />
-    </motion.a>
+      </Link>
+    </motion.div>
   );
 }

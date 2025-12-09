@@ -2,11 +2,7 @@ import { motion } from 'motion/react';
 import { ContentCard } from './ContentCard';
 import { homepageSections } from '../data/homepageSections';
 
-interface ContentSectionsProps {
-  onNavigate: (page: 'gaming' | 'streaming') => void;
-}
-
-export function ContentSections({ onNavigate }: ContentSectionsProps) {
+export function ContentSections() {
   return (
     <section id="content-sections" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -27,7 +23,7 @@ export function ContentSections({ onNavigate }: ContentSectionsProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {homepageSections.map((section, index) => (
-            <ContentCard key={section.id} section={section} index={index} onNavigate={onNavigate} />
+            <ContentCard key={section.id} section={section} index={index} />
           ))}
         </div>
       </div>

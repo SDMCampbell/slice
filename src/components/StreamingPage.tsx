@@ -1,15 +1,13 @@
 import { motion } from 'motion/react';
 import { ArrowLeft, MonitorPlay, Clock, Radio } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { ContentGrid } from './ContentGrid';
 import { ContentFilter } from './ContentFilter';
 import { useState, useMemo } from 'react';
 import { streamingContent } from '../data/streamingContent';
 
-interface StreamingPageProps {
-  onNavigateHome: () => void;
-}
-
-export function StreamingPage({ onNavigateHome }: StreamingPageProps) {
+export function StreamingPage() {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('All');
   
   // Get unique categories from content items
@@ -32,7 +30,7 @@ export function StreamingPage({ onNavigateHome }: StreamingPageProps) {
         
         <div className="relative max-w-7xl mx-auto px-6 py-12">
           <motion.button
-            onClick={onNavigateHome}
+            onClick={() => navigate('/')}
             className="inline-flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors mb-8"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}

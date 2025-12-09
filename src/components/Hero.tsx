@@ -50,7 +50,7 @@ export function Hero() {
             transition={{ delay: 0.2 }}
           >
             <Sparkles className="w-4 h-4 text-emerald-400" />
-            <span className="text-emerald-300">Welcome to the Hub</span>
+            <span className="text-emerald-300">Ur Done</span>
           </motion.div>
 
           <h1 className="text-6xl md:text-8xl mb-6 bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent">
